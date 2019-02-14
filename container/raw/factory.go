@@ -63,7 +63,7 @@ func (self *rawFactory) NewContainerHandler(name string, inHostNamespace bool) (
 	return newRawContainerHandler(name, self.cgroupSubsystems, self.machineInfoFactory, self.fsInfo, self.watcher, rootFs, self.includedMetrics)
 }
 
-// The raw factory can handle any container. If --docker_only is set to true, non-docker containers are ignored except for "/" and those whitelisted by docker_only_prefix_whitelist flag.
+// The raw factory can handle any container. If --docker_only is set to true, non-docker containers are ignored except for "/" and those whitelisted by raw_cgroup_prefix_whitelist flag.
 func (self *rawFactory) CanHandleAndAccept(name string) (bool, bool, error) {
 	if name == "/" {
 		return true, true, nil
