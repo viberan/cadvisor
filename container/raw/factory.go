@@ -65,18 +65,18 @@ func (self *rawFactory) NewContainerHandler(name string, inHostNamespace bool) (
 
 // The raw factory can handle any container. If --docker_only is set to true, non-docker containers are ignored except for "/" and those whitelisted by docker_only_prefix_whitelist flag.
 func (self *rawFactory) CanHandleAndAccept(name string) (bool, bool, error) {
-        if name == "/" {
-                return true, true, nil
-        }
-        if *dockerOnly && self.rawPrefixWhiteList[0]=="" {
-                return true, false, nil
-        }
-        for _, prefix := range self.rawPrefixWhiteList {
-                if strings.HasPrefix(name, prefix) {
-                return true, true, nil
-                }
-        }
-        return true, false, nil
+	if name == "/" {
+		return true, true, nil
+	}
+	if *dockerOnly && self.rawPrefixWhiteList[0] == "" {
+		return true, false, nil
+	}
+	for _, prefix := range self.rawPrefixWhiteList {
+		if strings.HasPrefix(name, prefix) {
+			return true, true, nil
+		}
+	}
+	return true, false, nil
 }
 
 func (self *rawFactory) DebugInfo() map[string][]string {
